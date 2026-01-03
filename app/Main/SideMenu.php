@@ -17,11 +17,18 @@ class SideMenu
                 'params' => [],
                 'title' => "Dashboard",
             ],
+
+            [
+                'icon' => "Users",
+                'route_name' => "admin.users.index",
+                'params' => [],
+                'title' => "Usuarios",
+            ],
             
             "SISTEMA",
             [
                 'icon' => "LogOut",
-                'route_name' => "login", // Temporalmente apunta a login
+                'route_name' => "logout",
                 'params' => [],
                 'title' => "Cerrar Sesión",
             ],

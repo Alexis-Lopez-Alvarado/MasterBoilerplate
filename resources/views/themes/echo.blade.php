@@ -317,7 +317,7 @@
                                             Mi Perfil
                                         </x-base.menu.item>
                                         <x-base.menu.divider />
-                                        <x-base.menu.item href="{{ route('login') }}">
+                                        <x-base.menu.item href="{{ route('logout') }}">
                                             <x-base.lucide
                                                 class="mr-2 h-4 w-4"
                                                 icon="LogOut"

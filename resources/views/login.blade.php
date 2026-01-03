@@ -57,50 +57,61 @@
                         </x-base.alert.dismiss-button>
                     </x-base.alert>
                     <div class="mt-6">
-                        <x-base.form-label>Email*</x-base.form-label>
-                        <x-base.form-input
-                            class="block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5"
-                            type="text"
-                            placeholder="{{ $users[0]['email'] }}"
-                        />
-                        <x-base.form-label class="mt-4">Password*</x-base.form-label>
-                        <x-base.form-input
-                            class="block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5"
-                            type="password"
-                            placeholder="************"
-                        />
-                        <div class="flex mt-4 text-xs text-slate-500 sm:text-sm">
-                            <div class="flex items-center mr-auto">
-                                <x-base.form-check.input
-                                    class="mr-2.5 border"
-                                    id="remember-me"
-                                    type="checkbox"
-                                />
-                                <label
-                                    class="cursor-pointer select-none"
-                                    for="remember-me"
-                                >
-                                    Remember me
-                                </label>
+                        <form method="POST" action="{{ route('login.store') }}">
+                            @csrf
+
+                            <x-base.form-label>Email*</x-base.form-label>
+                            <x-base.form-input
+                                class="block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5"
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                placeholder="correo@ejemplo.com"
+                            />
+                            @error('email')
+                                <div class="mt-2 text-sm text-danger">{{ $message }}</div>
+                            @enderror
+
+                            <x-base.form-label class="mt-4">Password*</x-base.form-label>
+                            <x-base.form-input
+                                class="block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5"
+                                type="password"
+                                name="password"
+                                placeholder="************"
+                            />
+                            @error('password')
+                                <div class="mt-2 text-sm text-danger">{{ $message }}</div>
+                            @enderror
+
+                            <div class="flex mt-4 text-xs text-slate-500 sm:text-sm">
+                                <div class="flex items-center mr-auto">
+                                    <x-base.form-check.input
+                                        class="mr-2.5 border"
+                                        id="remember-me"
+                                        type="checkbox"
+                                        name="remember"
+                                        value="1"
+                                    />
+                                    <label
+                                        class="cursor-pointer select-none"
+                                        for="remember-me"
+                                    >
+                                        Remember me
+                                    </label>
+                                </div>
                             </div>
-                            <a href="">Forgot Password?</a>
-                        </div>
-                        <div class="mt-5 text-center xl:mt-8 xl:text-left">
-                            <x-base.button
-                                class="w-full bg-gradient-to-r from-theme-1/70 to-theme-2/70 py-3.5 xl:mr-3"
-                                variant="primary"
-                                rounded
-                            >
-                                Sign In
-                            </x-base.button>
-                            <x-base.button
-                                class="mt-3 w-full bg-white/70 py-3.5"
-                                variant="outline-secondary"
-                                rounded
-                            >
-                                Sign Up
-                            </x-base.button>
-                        </div>
+
+                            <div class="mt-5 text-center xl:mt-8 xl:text-left">
+                                <x-base.button
+                                    class="w-full bg-gradient-to-r from-theme-1/70 to-theme-2/70 py-3.5 xl:mr-3"
+                                    variant="primary"
+                                    rounded
+                                    type="submit"
+                                >
+                                    Sign In
+                                </x-base.button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -128,48 +139,8 @@
                     feature-rich modules. Join us today to shape the future of your
                     application development.
                 </div>
-                <div class="flex flex-col gap-3 mt-10 xl:flex-row xl:items-center">
-                    <div class="flex items-center">
-                        <div class="image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                            <x-base.tippy
-                                class="rounded-full border-[3px] border-white/50"
-                                src="{{ Vite::asset($users[0]['photo']) }}"
-                                alt="Tailwise - Admin Dashboard Template"
-                                as="img"
-                                content="{{ $users[0]['name'] }}"
-                            />
-                        </div>
-                        <div class="-ml-3 image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                            <x-base.tippy
-                                class="rounded-full border-[3px] border-white/50"
-                                src="{{ Vite::asset($users[1]['photo']) }}"
-                                alt="Tailwise - Admin Dashboard Template"
-                                as="img"
-                                content="{{ $users[1]['name'] }}"
-                            />
-                        </div>
-                        <div class="-ml-3 image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                            <x-base.tippy
-                                class="rounded-full border-[3px] border-white/50"
-                                src="{{ Vite::asset($users[2]['photo']) }}"
-                                alt="Tailwise - Admin Dashboard Template"
-                                as="img"
-                                content="{{ $users[2]['name'] }}"
-                            />
-                        </div>
-                        <div class="-ml-3 image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                            <x-base.tippy
-                                class="rounded-full border-[3px] border-white/50"
-                                src="{{ Vite::asset($users[3]['photo']) }}"
-                                alt="Tailwise - Admin Dashboard Template"
-                                as="img"
-                                content="{{ $users[3]['name'] }}"
-                            />
-                        </div>
-                    </div>
-                    <div class="text-base text-white/70 xl:ml-2 2xl:ml-3">
-                        Over 7k+ strong and growing! Your journey begins here.
-                    </div>
+                <div class="mt-10 text-base leading-relaxed text-white/70 xl:text-lg">
+                    Inicia sesión para acceder al sistema.
                 </div>
             </div>
         </div>
